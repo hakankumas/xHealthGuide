@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('_partials/_head') %>
+    </head>
+    <body class="navbar-fixed sidebar-fixed" id="body">
+        <div class="wrapper">
+            <%- include('_partials/_sidebar') %>
+            <div class="page-wrapper">
+                <header class="main-header" id="header">
+                    <nav
+                        class="navbar navbar-expand-lg navbar-light"
+                        id="navbar"
+                    >
+                        <button id="sidebar-toggler" class="sidebar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                        <div class="navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown user-menu">
+                                    <button
+                                        class="dropdown-toggle nav-link"
+                                        data-toggle="dropdown"
+                                    >
+                                        <img
+                                            src="./user.png"
+                                            class="user-image rounded-circle"
+                                            alt="User Image"
+                                        />
+                                        <span class="d-none d-lg-inline-block"
+                                            >@admin</span
+                                        >
+                                    </button>
+                                    <ul
+                                        class="dropdown-menu dropdown-menu-right"
+                                    >
+                                        <li class="dropdown-footer">
+                                            <a
+                                                class="dropdown-link-item"
+                                                href="<%= baseURL %>/login"
+                                            >
+                                                <i class="mdi mdi-logout"></i>
+                                                Log Out
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <div class="content-wrapper">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-default">
+                                    <div class="d-flex p-5">
+                                        <div
+                                            class="icon-md bg-secondary rounded-circle mr-3"
+                                        >
+                                            <i
+                                                class="mdi mdi-account-plus-outline"
+                                            ></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <span class="h2 d-block">890</span>
+                                            <p>New Users</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-default">
+                                    <div class="d-flex p-5">
+                                        <div
+                                            class="icon-md bg-success rounded-circle mr-3"
+                                        >
+                                            <i class="mdi mdi-table-edit"></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <span class="h2 d-block">350</span>
+                                            <p>Order Placed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-default">
+                                    <div class="d-flex p-5">
+                                        <div
+                                            class="icon-md bg-primary rounded-circle mr-3"
+                                        >
+                                            <i
+                                                class="mdi mdi-content-save-edit-outline"
+                                            ></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <span class="h2 d-block">1360</span>
+                                            <p>Total Sales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card card-default">
+                                    <div class="d-flex p-5">
+                                        <div
+                                            class="icon-md bg-info rounded-circle mr-3"
+                                        >
+                                            <i class="mdi mdi-bell"></i>
+                                        </div>
+                                        <div class="text-left">
+                                            <span class="h2 d-block"
+                                                >$8930</span
+                                            >
+                                            <p>Monthly Revenue</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%- include('./_partials/_footer') %>
+            </div>
+        </div>
+        <%- include('./_partials/_scripts') %>
+    </body>
+</html>
