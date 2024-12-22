@@ -7,10 +7,27 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
     res.render("index", {
-        title: "Sağlık Rehberi KDS",
+        title: "Ana Sayfa | Sağlık Rehberi KDS",
     });
+});
+app.get("/a", (req, res) => {
+    res.render("index2", {
+        title: "Ana Sayfa | Sağlık Rehberi KDS",
+    });
+});
+app.get("/login", (req, res) => {
+    res.render("login", {
+        title: "Yönetici Giriş | Sağlık Rehberi KDS",
+    });
+});
+
+const Admin = require("./models/Admin");
+app.post("/api/login", async (req, res) => {
+    const admin = await Admin.get(req.body);
+    if (admin[0][0]) res.redirect("/");
+    else res.redirect("/login");
 });
 
 const PORT = 3000;
