@@ -221,4 +221,48 @@ module.exports = class Sick {
 			LEFT JOIN gender ON gender.id = sick.gender_id
         `);
     }
+
+    // Aylık Vücut Yağ Oranı
+    static fat() {
+        return connection.execute(`
+            SELECT 
+                sick_fat.id as sick_fat_id,
+
+                sick.id as sick_id,
+                sick.name as sick_name,
+                sick.surname as sick_surname,
+                gender.id as gender_id,
+                gender.name as gender_name,
+                sick.birthday as sick_birthday,
+                FLOOR(DATEDIFF(CURDATE(), sick.birthday) / 365) as sick_age,
+                
+				sick_fat.fat as sick_fat_fat,
+                sick_fat.date as sick_fat_date
+            FROM sick_fat
+            LEFT JOIN sick ON sick_fat.sick_id = sick.id
+			LEFT JOIN gender ON gender.id = sick.gender_id
+        `);
+    }
+
+    // Aylık Metabolik Hız Bilgisi
+    static metabolic_rate() {
+        return connection.execute(`
+            SELECT 
+                sick_metabolicrate.id as sick_metabolicrate_id,
+
+                sick.id as sick_id,
+                sick.name as sick_name,
+                sick.surname as sick_surname,
+                gender.id as gender_id,
+                gender.name as gender_name,
+                sick.birthday as sick_birthday,
+                FLOOR(DATEDIFF(CURDATE(), sick.birthday) / 365) as sick_age,
+                
+                sick_metabolicrate.metabolicrate as sick_metabolicrate_metabolicrate,
+                sick_metabolicrate.date as sick_metabolicrate_date
+            FROM sick_metabolicrate
+            LEFT JOIN sick ON sick_metabolicrate.sick_id = sick.id
+            LEFT JOIN gender ON gender.id = sick.gender_id
+        `);
+    }
 };
