@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const Admin = require("./models/Admin");
 const Count = require("./models/Count");
+const Sick = require("./models/Sick");
 
 app.get("/", async (req, res) => {
     const count_sick = await Count.count_sick();
@@ -18,11 +19,33 @@ app.get("/", async (req, res) => {
 
     res.render("index", {
         title: "Ana Sayfa | Sağlık Rehberi KDS",
+        activePage: "dashboard",
 
         count_sick: count_sick[0],
         count_sick_by_chronic: count_sick_by_chronic[0],
         count_sick_by_male: count_sick_by_male[0],
         count_sick_by_female: count_sick_by_female[0],
+    });
+});
+
+app.get("/sick", async (req, res) => {
+    const info_sick = await Sick.info_sick();
+
+    res.render("sick", {
+        title: "Hastalar | Sağlık Rehberi KDS",
+        activePage: "sick",
+
+        info_sick: info_sick[0],
+    });
+});
+app.get("/chronic", async (req, res) => {
+    const info_chronic_sick = await Sick.info_chronic_sick();
+
+    res.render("chronic", {
+        title: "Kronik Hastalıklar | Sağlık Rehberi KDS",
+        activePage: "chronic",
+
+        info_chronic_sick: info_chronic_sick[0],
     });
 });
 

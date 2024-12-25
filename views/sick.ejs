@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!-- prettier-ignore -->
+        <%- include('./_partials/_head'); %>
+        <%- include('./_partials/_cdn_datatables'); %>
+        <%- include('./_partials/_cdn_googlecharts'); %>
+        <!-- prettier-ignore -->
+    </head>
+    <body class="navbar-fixed sidebar-fixed" id="body">
+        <div class="wrapper">
+            <%- include('_partials/_sidebar') %>
+            <div class="page-wrapper">
+                <%- include('./_partials/_header') %>
+                <div class="content-wrapper">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h1
+                                            class="text-center pt-3"
+                                            style="
+                                                font-size: 24px;
+                                                font-weight: bold;
+                                            "
+                                        >
+                                            Hasta Bilgileri
+                                        </h1>
+                                        <table
+                                            id="table_sick"
+                                            class="display rounded"
+                                            style="
+                                                width: 100%;
+                                                background-color: whitesmoke;
+                                            "
+                                        >
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        ID
+                                                    </th>
+                                                    <th>Ad</th>
+                                                    <th>Soyad</th>
+                                                    <th class="text-center">
+                                                        Cinsiyet
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Yaş
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Boy
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Kilo
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Vücut Kitle İndeksi
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Durum
+                                                    </th>
+                                                    <th class="text-center">
+                                                        Sil
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- prettier-ignore -->
+                                                <% info_sick.forEach(item => { %>
+                                                <!-- prettier-ignore -->
+                                                <tr>
+                                                    <td class="text-center"><%= item.sick_id %></td>
+                                                    <td><%= item.sick_name %></td>
+                                                    <td><%= item.sick_surname %></td>
+                                                    <td class="text-center"><%= item.gender_name %></td>
+                                                    <td class="text-center"><%= item.sick_age %></td>
+                                                    <td class="text-center"><%= item.sick_height %> cm</td>
+                                                    <td class="text-center"><%= item.sick_weight %> kg</td>
+                                                    <td class="text-center"><%= item.sick_bmi %> bmi</td>
+                                                    <td class="text-center <%= (item.sick_bmi < 25) ? 'text-success' : (item.sick_bmi > 30 ? 'text-danger' : 'text-primary') %>">
+                                                        <%= (item.sick_bmi < 25) ? 'İdeal' : (item.sick_bmi > 30 ? 'Obez' : 'Fazla Kilolu') %>
+                                                    </td>
+                                                    <td class="text-danger text-center">
+                                                        <a href="<%= baseURL %>/sick/delete/<%= item.sick_id %>" class="btn btn-outline-danger">Sil</a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%- include('./_partials/_footer') %>
+            </div>
+        </div>
+        <%- include('./_partials/_scripts') %>
+        <script>
+            new DataTable("#table_sick", {
+                paging: false,
+                scrollCollapse: true,
+                scrollY: "75vh",
+                order: [[0, "desc"]],
+            });
+        </script>
+    </body>
+</html>
