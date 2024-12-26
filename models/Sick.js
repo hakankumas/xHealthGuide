@@ -48,4 +48,37 @@ module.exports = class Sick {
             LEFT JOIN chronic ON sick_chronic.chronic_id = chronic.id
         `);
     }
+
+    // Kronik Hastalık Dağılımı
+    static distribution_of_chronic_sick() {
+        return connection.execute(`
+            SELECT  
+                chronic.id as chronic_id,
+                chronic.name as chronic_name,
+                COUNT(sick_chronic.sick_id) as number
+            FROM sick_chronic
+            INNER JOIN chronic ON sick_chronic.chronic_id = chronic.id
+            GROUP BY sick_chronic.chronic_id
+        `);
+    }
+
+    // Kronik Hastaların Cinsiyet Dağılımı
+    static gender_distribution_of_chronic_sick() {
+        return connection.execute(`
+            SELECT 
+                chronic.id as chronic_id,
+                chronic.name as chronic_name,
+
+                gender.id as gender_id,
+                gender.name as gender_name,
+                
+                COUNT(sick_chronic.sick_id) as number
+            FROM sick_chronic
+            LEFT JOIN sick ON sick_chronic.sick_id = sick.id
+            LEFT JOIN gender ON gender.id = sick.gender_id
+            LEFT JOIN chronic ON sick_chronic.chronic_id = chronic.id
+            GROUP BY gender.id, chronic.id
+            ORDER BY chronic.name ASC, gender.id ASC
+        `);
+    }
 };

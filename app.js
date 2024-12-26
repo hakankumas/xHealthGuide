@@ -198,6 +198,25 @@ app.get("/api/female/weight", async (req, res) => {
     });
 });
 
+app.get("/api/distribution_of_chronic_sick", async (req, res) => {
+    const distribution_of_chronic_sick =
+        await Sick.distribution_of_chronic_sick();
+
+    res.status(200).json({
+        distribution_of_chronic_sick: distribution_of_chronic_sick[0],
+    });
+});
+
+app.get("/api/gender_distribution_of_chronic_sick", async (req, res) => {
+    const gender_distribution_of_chronic_sick =
+        await Sick.gender_distribution_of_chronic_sick();
+
+    res.status(200).json({
+        gender_distribution_of_chronic_sick:
+            gender_distribution_of_chronic_sick[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
