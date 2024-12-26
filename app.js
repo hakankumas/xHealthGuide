@@ -11,6 +11,7 @@ const Admin = require("./models/Admin");
 const Count = require("./models/Count");
 const Sick = require("./models/Sick");
 const Male = require("./models/Male");
+const Female = require("./models/Female");
 
 app.get("/", async (req, res) => {
     const count_sick = await Count.count_sick();
@@ -135,6 +136,70 @@ app.get("/api/male/waistline", async (req, res) => {
 
 app.get("/api/male/weight", async (req, res) => {
     const weight = await Male.weight();
+
+    res.status(200).json({
+        weight: weight[0],
+    });
+});
+
+app.get("/api/female/blood_pressure", async (req, res) => {
+    const blood_pressure = await Female.blood_pressure();
+
+    res.status(200).json({
+        blood_pressure: blood_pressure[0],
+    });
+});
+
+app.get("/api/female/bpm", async (req, res) => {
+    const bpm = await Female.bpm();
+
+    res.status(200).json({
+        bpm: bpm[0],
+    });
+});
+
+app.get("/api/female/cholesterol", async (req, res) => {
+    const cholesterol = await Female.cholesterol();
+
+    res.status(200).json({
+        cholesterol: cholesterol[0],
+    });
+});
+
+app.get("/api/female/fat", async (req, res) => {
+    const fat = await Female.fat();
+
+    res.status(200).json({
+        fat: fat[0],
+    });
+});
+
+app.get("/api/female/metabolicrate", async (req, res) => {
+    const metabolicrate = await Female.metabolicrate();
+
+    res.status(200).json({
+        metabolicrate: metabolicrate[0],
+    });
+});
+
+app.get("/api/female/step", async (req, res) => {
+    const step = await Female.step();
+
+    res.status(200).json({
+        step: step[0],
+    });
+});
+
+app.get("/api/female/waistline", async (req, res) => {
+    const waistline = await Female.waistline();
+
+    res.status(200).json({
+        waistline: waistline[0],
+    });
+});
+
+app.get("/api/female/weight", async (req, res) => {
+    const weight = await Female.weight();
 
     res.status(200).json({
         weight: weight[0],
