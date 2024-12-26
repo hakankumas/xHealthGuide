@@ -93,6 +93,14 @@ app.get("/api/male/bpm", async (req, res) => {
     });
 });
 
+app.get("/api/male/cholesterol", async (req, res) => {
+    const cholesterol = await Male.cholesterol();
+
+    res.status(200).json({
+        cholesterol: cholesterol[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
