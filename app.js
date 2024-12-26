@@ -101,6 +101,14 @@ app.get("/api/male/cholesterol", async (req, res) => {
     });
 });
 
+app.get("/api/male/fat", async (req, res) => {
+    const fat = await Male.fat();
+
+    res.status(200).json({
+        fat: fat[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
