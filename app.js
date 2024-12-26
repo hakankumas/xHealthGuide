@@ -109,6 +109,14 @@ app.get("/api/male/fat", async (req, res) => {
     });
 });
 
+app.get("/api/male/metabolicrate", async (req, res) => {
+    const metabolicrate = await Male.metabolicrate();
+
+    res.status(200).json({
+        metabolicrate: metabolicrate[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {

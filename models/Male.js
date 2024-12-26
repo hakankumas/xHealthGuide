@@ -211,7 +211,7 @@ module.exports = class Male {
     }
 
     // Aylık Metabolik Hız Bilgisi
-    static metabolic_rate() {
+    static metabolicrate() {
         return connection.execute(`
             SELECT 
                 sick_metabolicrate.id as sick_metabolicrate_id,
