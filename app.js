@@ -125,6 +125,14 @@ app.get("/api/male/step", async (req, res) => {
     });
 });
 
+app.get("/api/male/waistline", async (req, res) => {
+    const waistline = await Male.waistline();
+
+    res.status(200).json({
+        waistline: waistline[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
