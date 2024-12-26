@@ -19,6 +19,8 @@ app.get("/", async (req, res) => {
     const count_sick_by_male = await Count.count_sick_by_male();
     const count_sick_by_female = await Count.count_sick_by_female();
 
+    const info_sick = await Sick.info_sick();
+
     res.render("index", {
         title: "Ana Sayfa | Sağlık Rehberi KDS",
         activePage: "dashboard",
@@ -27,6 +29,8 @@ app.get("/", async (req, res) => {
         count_sick_by_chronic: count_sick_by_chronic[0],
         count_sick_by_male: count_sick_by_male[0],
         count_sick_by_female: count_sick_by_female[0],
+
+        info_sick: info_sick[0],
     });
 });
 
@@ -40,17 +44,6 @@ app.post("/api/login", async (req, res) => {
     const admin = await Admin.get(req.body);
     if (admin[0][0]) res.redirect("/");
     else res.redirect("/login");
-});
-
-app.get("/sick", async (req, res) => {
-    const info_sick = await Sick.info_sick();
-
-    res.render("sick", {
-        title: "Hastalar | Sağlık Rehberi KDS",
-        activePage: "sick",
-
-        info_sick: info_sick[0],
-    });
 });
 
 app.get("/chronic", async (req, res) => {
