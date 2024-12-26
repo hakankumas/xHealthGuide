@@ -1,7 +1,7 @@
 const connection = require("../database/db");
 
 module.exports = class Sick {
-    // Hasta Bilgileri
+    // Hasta Bilgileri + Vücut Kitle Endeksi
     static info_sick() {
         return connection.execute(`
             SELECT 

@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 const Admin = require("./models/Admin");
 const Count = require("./models/Count");
 const Sick = require("./models/Sick");
+const Male = require("./models/Male");
 
 app.get("/", async (req, res) => {
     const count_sick = await Count.count_sick();
@@ -28,6 +29,18 @@ app.get("/", async (req, res) => {
     });
 });
 
+app.get("/login", (req, res) => {
+    res.render("login", {
+        title: "Yönetici Giriş | Sağlık Rehberi KDS",
+    });
+});
+
+app.post("/api/login", async (req, res) => {
+    const admin = await Admin.get(req.body);
+    if (admin[0][0]) res.redirect("/");
+    else res.redirect("/login");
+});
+
 app.get("/sick", async (req, res) => {
     const info_sick = await Sick.info_sick();
 
@@ -38,6 +51,7 @@ app.get("/sick", async (req, res) => {
         info_sick: info_sick[0],
     });
 });
+
 app.get("/chronic", async (req, res) => {
     const info_chronic_sick = await Sick.info_chronic_sick();
 
@@ -49,16 +63,34 @@ app.get("/chronic", async (req, res) => {
     });
 });
 
-app.get("/login", (req, res) => {
-    res.render("login", {
-        title: "Yönetici Giriş | Sağlık Rehberi KDS",
+app.get("/male", async (req, res) => {
+    res.render("male", {
+        title: "Erkek Hastalar | Sağlık Rehberi KDS",
+        activePage: "male",
     });
 });
 
-app.post("/api/login", async (req, res) => {
-    const admin = await Admin.get(req.body);
-    if (admin[0][0]) res.redirect("/");
-    else res.redirect("/login");
+app.get("/female", async (req, res) => {
+    res.render("female", {
+        title: "Kadın Hastalar | Sağlık Rehberi KDS",
+        activePage: "female",
+    });
+});
+
+app.get("/api/male/blood_pressure", async (req, res) => {
+    const blood_pressure = await Male.blood_pressure();
+
+    res.status(200).json({
+        blood_pressure: blood_pressure[0],
+    });
+});
+
+app.get("/api/male/bpm", async (req, res) => {
+    const bpm = await Male.bpm();
+
+    res.status(200).json({
+        bpm: bpm[0],
+    });
 });
 
 const PORT = 3001;

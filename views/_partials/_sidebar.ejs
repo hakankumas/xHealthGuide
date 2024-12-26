@@ -28,6 +28,20 @@
                         <span class="nav-text">Kronik Hastalar</span>
                     </a>
                 </li>
+
+                <li class="<%= activePage === 'male' ? 'active' : '' %>">
+                    <a class="sidenav-item-link" href="<%= baseURL %>/male">
+                        <i class="mdi mdi-human-male"></i>
+                        <span class="nav-text">Erkek Hastalar</span>
+                    </a>
+                </li>
+
+                <li class="<%= activePage === 'female' ? 'active' : '' %>">
+                    <a class="sidenav-item-link" href="<%= baseURL %>/female">
+                        <i class="mdi mdi-human-female"></i>
+                        <span class="nav-text">Kadın Hastalar</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
