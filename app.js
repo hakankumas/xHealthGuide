@@ -117,6 +117,14 @@ app.get("/api/male/metabolicrate", async (req, res) => {
     });
 });
 
+app.get("/api/male/step", async (req, res) => {
+    const step = await Male.step();
+
+    res.status(200).json({
+        step: step[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
