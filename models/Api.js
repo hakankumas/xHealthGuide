@@ -1,8 +1,8 @@
 const connection = require("../database/db");
 
-module.exports = class Male {
+module.exports = class Api {
     // Günlük Tansiyon Bilgisi
-    static blood_pressure() {
+    static blood_pressure(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_bloodpressure.id as sick_bloodpressure_id,
@@ -20,12 +20,12 @@ module.exports = class Male {
             FROM sick_bloodpressure
             LEFT JOIN sick ON sick_bloodpressure.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Günlük Kalp Atış Hızı Bilgisi
-    static bpm() {
+    static bpm(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_bpm.id as sick_bpm_id,
@@ -43,12 +43,12 @@ module.exports = class Male {
             FROM sick_bpm
             LEFT JOIN sick ON sick_bpm.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Günlük Kalori Bilgisi
-    static calory() {
+    static calory(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_calory.id as sick_calory_id,
@@ -67,12 +67,12 @@ module.exports = class Male {
             FROM sick_calory
             LEFT JOIN sick ON sick_calory.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Günlük Kolesterol Bilgisi
-    static cholesterol() {
+    static cholesterol(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_cholesterol.id as sick_cholesterol_id,
@@ -90,12 +90,12 @@ module.exports = class Male {
             FROM sick_cholesterol
             LEFT JOIN sick ON sick_cholesterol.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Günlük Diyabet Bilgisi
-    static diabetes() {
+    static diabetes(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_diabetes.id as sick_diabetes_id,
@@ -114,12 +114,12 @@ module.exports = class Male {
             FROM sick_diabetes
             LEFT JOIN sick ON sick_diabetes.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Günlük Atılan Adım Bilgisi
-    static step() {
+    static step(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_step.id as sick_step_id,
@@ -137,12 +137,12 @@ module.exports = class Male {
             FROM sick_step
             LEFT JOIN sick ON sick_step.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Aylık Bel Ölçüsü Bilgisi
-    static waistline() {
+    static waistline(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_waistline.id as sick_waistline_id,
@@ -160,12 +160,12 @@ module.exports = class Male {
             FROM sick_waistline
             LEFT JOIN sick ON sick_waistline.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Aylık Kilo Bilgisi
-    static weight() {
+    static weight(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_weight.id as sick_weight_id,
@@ -183,12 +183,12 @@ module.exports = class Male {
             FROM sick_weight
             LEFT JOIN sick ON sick_weight.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Aylık Vücut Yağ Oranı
-    static fat() {
+    static fat(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_fat.id as sick_fat_id,
@@ -206,12 +206,12 @@ module.exports = class Male {
             FROM sick_fat
             LEFT JOIN sick ON sick_fat.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 
     // Aylık Metabolik Hız Bilgisi
-    static metabolicrate() {
+    static metabolicrate(gender_id) {
         return connection.execute(`
             SELECT 
                 sick_metabolicrate.id as sick_metabolicrate_id,
@@ -229,7 +229,7 @@ module.exports = class Male {
             FROM sick_metabolicrate
             LEFT JOIN sick ON sick_metabolicrate.sick_id = sick.id
             LEFT JOIN gender ON gender.id = sick.gender_id
-            WHERE gender.id = 2
+            WHERE gender.id = ${gender_id}
         `);
     }
 };

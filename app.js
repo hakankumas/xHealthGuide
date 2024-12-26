@@ -10,8 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 const Admin = require("./models/Admin");
 const Count = require("./models/Count");
 const Sick = require("./models/Sick");
-const Male = require("./models/Male");
-const Female = require("./models/Female");
+const Api = require("./models/Api");
 
 app.get("/", async (req, res) => {
     const count_sick = await Count.count_sick();
@@ -72,7 +71,7 @@ app.get("/female", async (req, res) => {
 });
 
 app.get("/api/male/blood_pressure", async (req, res) => {
-    const blood_pressure = await Male.blood_pressure();
+    const blood_pressure = await Api.blood_pressure(1);
 
     res.status(200).json({
         blood_pressure: blood_pressure[0],
@@ -80,7 +79,7 @@ app.get("/api/male/blood_pressure", async (req, res) => {
 });
 
 app.get("/api/male/bpm", async (req, res) => {
-    const bpm = await Male.bpm();
+    const bpm = await Api.bpm(1);
 
     res.status(200).json({
         bpm: bpm[0],
@@ -88,7 +87,7 @@ app.get("/api/male/bpm", async (req, res) => {
 });
 
 app.get("/api/male/cholesterol", async (req, res) => {
-    const cholesterol = await Male.cholesterol();
+    const cholesterol = await Api.cholesterol(1);
 
     res.status(200).json({
         cholesterol: cholesterol[0],
@@ -96,7 +95,7 @@ app.get("/api/male/cholesterol", async (req, res) => {
 });
 
 app.get("/api/male/fat", async (req, res) => {
-    const fat = await Male.fat();
+    const fat = await Api.fat(1);
 
     res.status(200).json({
         fat: fat[0],
@@ -104,7 +103,7 @@ app.get("/api/male/fat", async (req, res) => {
 });
 
 app.get("/api/male/metabolicrate", async (req, res) => {
-    const metabolicrate = await Male.metabolicrate();
+    const metabolicrate = await Api.metabolicrate(1);
 
     res.status(200).json({
         metabolicrate: metabolicrate[0],
@@ -112,7 +111,7 @@ app.get("/api/male/metabolicrate", async (req, res) => {
 });
 
 app.get("/api/male/step", async (req, res) => {
-    const step = await Male.step();
+    const step = await Api.step(1);
 
     res.status(200).json({
         step: step[0],
@@ -120,7 +119,7 @@ app.get("/api/male/step", async (req, res) => {
 });
 
 app.get("/api/male/waistline", async (req, res) => {
-    const waistline = await Male.waistline();
+    const waistline = await Api.waistline(1);
 
     res.status(200).json({
         waistline: waistline[0],
@@ -128,7 +127,7 @@ app.get("/api/male/waistline", async (req, res) => {
 });
 
 app.get("/api/male/weight", async (req, res) => {
-    const weight = await Male.weight();
+    const weight = await Api.weight(1);
 
     res.status(200).json({
         weight: weight[0],
@@ -136,7 +135,7 @@ app.get("/api/male/weight", async (req, res) => {
 });
 
 app.get("/api/female/blood_pressure", async (req, res) => {
-    const blood_pressure = await Female.blood_pressure();
+    const blood_pressure = await Api.blood_pressure(2);
 
     res.status(200).json({
         blood_pressure: blood_pressure[0],
@@ -144,7 +143,7 @@ app.get("/api/female/blood_pressure", async (req, res) => {
 });
 
 app.get("/api/female/bpm", async (req, res) => {
-    const bpm = await Female.bpm();
+    const bpm = await Api.bpm(2);
 
     res.status(200).json({
         bpm: bpm[0],
@@ -152,7 +151,7 @@ app.get("/api/female/bpm", async (req, res) => {
 });
 
 app.get("/api/female/cholesterol", async (req, res) => {
-    const cholesterol = await Female.cholesterol();
+    const cholesterol = await Api.cholesterol(2);
 
     res.status(200).json({
         cholesterol: cholesterol[0],
@@ -160,7 +159,7 @@ app.get("/api/female/cholesterol", async (req, res) => {
 });
 
 app.get("/api/female/fat", async (req, res) => {
-    const fat = await Female.fat();
+    const fat = await Api.fat(2);
 
     res.status(200).json({
         fat: fat[0],
@@ -168,7 +167,7 @@ app.get("/api/female/fat", async (req, res) => {
 });
 
 app.get("/api/female/metabolicrate", async (req, res) => {
-    const metabolicrate = await Female.metabolicrate();
+    const metabolicrate = await Api.metabolicrate(2);
 
     res.status(200).json({
         metabolicrate: metabolicrate[0],
@@ -176,7 +175,7 @@ app.get("/api/female/metabolicrate", async (req, res) => {
 });
 
 app.get("/api/female/step", async (req, res) => {
-    const step = await Female.step();
+    const step = await Api.step(2);
 
     res.status(200).json({
         step: step[0],
@@ -184,7 +183,7 @@ app.get("/api/female/step", async (req, res) => {
 });
 
 app.get("/api/female/waistline", async (req, res) => {
-    const waistline = await Female.waistline();
+    const waistline = await Api.waistline(2);
 
     res.status(200).json({
         waistline: waistline[0],
@@ -192,7 +191,7 @@ app.get("/api/female/waistline", async (req, res) => {
 });
 
 app.get("/api/female/weight", async (req, res) => {
-    const weight = await Female.weight();
+    const weight = await Api.weight(2);
 
     res.status(200).json({
         weight: weight[0],
