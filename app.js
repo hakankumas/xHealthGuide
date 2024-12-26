@@ -56,142 +56,71 @@ app.get("/chronic", async (req, res) => {
     });
 });
 
-app.get("/male", async (req, res) => {
-    res.render("male", {
-        title: "Erkek Hastalar | Sağlık Rehberi KDS",
-        activePage: "male",
+app.get("/datas", async (req, res) => {
+    res.render("datas", {
+        title: "Hasta Verileri | Sağlık Rehberi KDS",
+        activePage: "datas",
     });
 });
 
-app.get("/female", async (req, res) => {
-    res.render("female", {
-        title: "Kadın Hastalar | Sağlık Rehberi KDS",
-        activePage: "female",
-    });
-});
-
-app.get("/api/male/blood_pressure", async (req, res) => {
-    const blood_pressure = await Api.blood_pressure(1);
+app.get("/api/blood_pressure", async (req, res) => {
+    const blood_pressure = await Api.blood_pressure();
 
     res.status(200).json({
         blood_pressure: blood_pressure[0],
     });
 });
 
-app.get("/api/male/bpm", async (req, res) => {
-    const bpm = await Api.bpm(1);
+app.get("/api/bpm", async (req, res) => {
+    const bpm = await Api.bpm();
 
     res.status(200).json({
         bpm: bpm[0],
     });
 });
 
-app.get("/api/male/cholesterol", async (req, res) => {
-    const cholesterol = await Api.cholesterol(1);
+app.get("/api/cholesterol", async (req, res) => {
+    const cholesterol = await Api.cholesterol();
 
     res.status(200).json({
         cholesterol: cholesterol[0],
     });
 });
 
-app.get("/api/male/fat", async (req, res) => {
-    const fat = await Api.fat(1);
+app.get("/api/fat", async (req, res) => {
+    const fat = await Api.fat();
 
     res.status(200).json({
         fat: fat[0],
     });
 });
 
-app.get("/api/male/metabolicrate", async (req, res) => {
-    const metabolicrate = await Api.metabolicrate(1);
+app.get("/api/metabolicrate", async (req, res) => {
+    const metabolicrate = await Api.metabolicrate();
 
     res.status(200).json({
         metabolicrate: metabolicrate[0],
     });
 });
 
-app.get("/api/male/step", async (req, res) => {
-    const step = await Api.step(1);
+app.get("/api/step", async (req, res) => {
+    const step = await Api.step();
 
     res.status(200).json({
         step: step[0],
     });
 });
 
-app.get("/api/male/waistline", async (req, res) => {
-    const waistline = await Api.waistline(1);
+app.get("/api/waistline", async (req, res) => {
+    const waistline = await Api.waistline();
 
     res.status(200).json({
         waistline: waistline[0],
     });
 });
 
-app.get("/api/male/weight", async (req, res) => {
-    const weight = await Api.weight(1);
-
-    res.status(200).json({
-        weight: weight[0],
-    });
-});
-
-app.get("/api/female/blood_pressure", async (req, res) => {
-    const blood_pressure = await Api.blood_pressure(2);
-
-    res.status(200).json({
-        blood_pressure: blood_pressure[0],
-    });
-});
-
-app.get("/api/female/bpm", async (req, res) => {
-    const bpm = await Api.bpm(2);
-
-    res.status(200).json({
-        bpm: bpm[0],
-    });
-});
-
-app.get("/api/female/cholesterol", async (req, res) => {
-    const cholesterol = await Api.cholesterol(2);
-
-    res.status(200).json({
-        cholesterol: cholesterol[0],
-    });
-});
-
-app.get("/api/female/fat", async (req, res) => {
-    const fat = await Api.fat(2);
-
-    res.status(200).json({
-        fat: fat[0],
-    });
-});
-
-app.get("/api/female/metabolicrate", async (req, res) => {
-    const metabolicrate = await Api.metabolicrate(2);
-
-    res.status(200).json({
-        metabolicrate: metabolicrate[0],
-    });
-});
-
-app.get("/api/female/step", async (req, res) => {
-    const step = await Api.step(2);
-
-    res.status(200).json({
-        step: step[0],
-    });
-});
-
-app.get("/api/female/waistline", async (req, res) => {
-    const waistline = await Api.waistline(2);
-
-    res.status(200).json({
-        waistline: waistline[0],
-    });
-});
-
-app.get("/api/female/weight", async (req, res) => {
-    const weight = await Api.weight(2);
+app.get("/api/weight", async (req, res) => {
+    const weight = await Api.weight();
 
     res.status(200).json({
         weight: weight[0],

@@ -6,14 +6,14 @@
         <%- include('./_partials/_cdn_datatables'); %>
         <%- include('./_partials/_cdn_googlecharts'); %>
         <!-- prettier-ignore -->
-        <%- include('./graphic_male/bloodpressure'); %>
-        <%- include('./graphic_male/bpm'); %>
-        <%- include('./graphic_male/cholesterol'); %>
-        <%- include('./graphic_male/fat'); %>
-        <%- include('./graphic_male/metabolicrate'); %>
-        <%- include('./graphic_male/step'); %>
-        <%- include('./graphic_male/waistline'); %>
-        <%- include('./graphic_male/weight'); %>
+        <%- include('./graphic/bloodpressure'); %>
+        <%- include('./graphic/bpm'); %>
+        <%- include('./graphic/cholesterol'); %>
+        <%- include('./graphic/fat'); %>
+        <%- include('./graphic/metabolicrate'); %>
+        <%- include('./graphic/step'); %>
+        <%- include('./graphic/waistline'); %>
+        <%- include('./graphic/weight'); %>
         <!-- prettier-ignore -->
     </head>
     <body class="navbar-fixed sidebar-fixed" id="body">
@@ -34,7 +34,7 @@
                                                 font-weight: bold;
                                             "
                                         >
-                                            Kilo
+                                            Kilo <small>(Aylık)</small>
                                         </h1>
                                         <div
                                             id="chart_div8"
@@ -57,7 +57,7 @@
                                                 font-weight: bold;
                                             "
                                         >
-                                            Bel Ölçüsü
+                                            Bel Ölçüsü <small>(Aylık)</small>
                                         </h1>
                                         <div
                                             id="chart_div7"
@@ -80,7 +80,7 @@
                                                 font-weight: bold;
                                             "
                                         >
-                                            Adım Sayısı
+                                            Adım Sayısı <small>(Günlük)</small>
                                         </h1>
                                         <div
                                             id="chart_div6"
@@ -103,7 +103,7 @@
                                                 font-weight: bold;
                                             "
                                         >
-                                            Metabolik Hız
+                                            Metabolik Hız <small>(Aylık)</small>
                                         </h1>
                                         <div
                                             id="chart_div5"
@@ -126,7 +126,7 @@
                                                 font-weight: bold;
                                             "
                                         >
-                                            Tansiyon
+                                            Tansiyon <small>(Günlük)</small>
                                         </h1>
                                         <div
                                             id="chart_div1"
@@ -150,6 +150,7 @@
                                             "
                                         >
                                             Kalp Atış Hızı
+                                            <small>(Günlük)</small>
                                         </h1>
                                         <div
                                             id="chart_div2"
@@ -172,7 +173,7 @@
                                                 font-weight: bold;
                                             "
                                         >
-                                            Kolesterol
+                                            Kolesterol <small>(Günlük)</small>
                                         </h1>
                                         <div
                                             id="chart_div3"
@@ -196,6 +197,7 @@
                                             "
                                         >
                                             Vücut Yağ Oranı
+                                            <small>(Aylık)</small>
                                         </h1>
                                         <div
                                             id="chart_div4"

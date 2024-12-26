@@ -5,14 +5,14 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        fetch(`<%= baseURL %>/api/female/weight`)
+        fetch(`<%= baseURL %>/api/metabolicrate`)
             .then((response) => response.json())
             .then((data) => {
                 var dataTable = new google.visualization.DataTable();
                 dataTable.addColumn("string", "Tarih");
 
                 const sickMap = new Map();
-                data.weight.forEach((item) => {
+                data.metabolicrate.forEach((item) => {
                     if (
                         !sickMap.has(item.sick_name + " " + item.sick_surname)
                     ) {
@@ -28,14 +28,16 @@
                 });
 
                 const dateMap = new Map();
-                data.weight.forEach((item) => {
-                    const formattedDate = formatDate(item.sick_weight_date);
+                data.metabolicrate.forEach((item) => {
+                    const formattedDate = formatDate(
+                        item.sick_metabolicrate_date
+                    );
                     if (!dateMap.has(formattedDate)) {
                         dateMap.set(formattedDate, {});
                     }
                     dateMap.get(formattedDate)[
                         item.sick_name + " " + item.sick_surname
-                    ] = parseFloat(item.sick_weight_weight);
+                    ] = parseFloat(item.sick_metabolicrate_metabolicrate);
                 });
 
                 const sortedDates = Array.from(dateMap.keys()).sort((a, b) => {
@@ -61,12 +63,12 @@
                         title: "Tarih",
                     },
                     vAxis: {
-                        title: "Kilo",
+                        title: "Metabolik Hız",
                     },
                 };
 
                 var chart = new google.charts.Line(
-                    document.getElementById("chart_div8")
+                    document.getElementById("chart_div5")
                 );
                 chart.draw(dataTable, options);
             })

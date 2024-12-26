@@ -5,14 +5,14 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        fetch(`<%= baseURL %>/api/male/blood_pressure`)
+        fetch(`<%= baseURL %>/api/waistline`)
             .then((response) => response.json())
             .then((data) => {
                 var dataTable = new google.visualization.DataTable();
                 dataTable.addColumn("string", "Tarih");
 
                 const sickMap = new Map();
-                data.blood_pressure.forEach((item) => {
+                data.waistline.forEach((item) => {
                     if (
                         !sickMap.has(item.sick_name + " " + item.sick_surname)
                     ) {
@@ -28,16 +28,14 @@
                 });
 
                 const dateMap = new Map();
-                data.blood_pressure.forEach((item) => {
-                    const formattedDate = formatDate(
-                        item.sick_bloodpressure_date
-                    ); // Tarihi formatla
+                data.waistline.forEach((item) => {
+                    const formattedDate = formatDate(item.sick_waistline_date);
                     if (!dateMap.has(formattedDate)) {
                         dateMap.set(formattedDate, {});
                     }
                     dateMap.get(formattedDate)[
                         item.sick_name + " " + item.sick_surname
-                    ] = parseFloat(item.sick_bloodpressure_bloodpressure);
+                    ] = parseFloat(item.sick_waistline_waistline);
                 });
 
                 const sortedDates = Array.from(dateMap.keys()).sort((a, b) => {
@@ -63,12 +61,12 @@
                         title: "Tarih",
                     },
                     vAxis: {
-                        title: "Tansiyon",
+                        title: "Bel Ölçüsü",
                     },
                 };
 
                 var chart = new google.charts.Line(
-                    document.getElementById("chart_div1")
+                    document.getElementById("chart_div7")
                 );
                 chart.draw(dataTable, options);
             })

@@ -5,14 +5,14 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        fetch(`<%= baseURL %>/api/male/cholesterol`)
+        fetch(`<%= baseURL %>/api/step`)
             .then((response) => response.json())
             .then((data) => {
                 var dataTable = new google.visualization.DataTable();
                 dataTable.addColumn("string", "Tarih");
 
                 const sickMap = new Map();
-                data.cholesterol.forEach((item) => {
+                data.step.forEach((item) => {
                     if (
                         !sickMap.has(item.sick_name + " " + item.sick_surname)
                     ) {
@@ -28,16 +28,14 @@
                 });
 
                 const dateMap = new Map();
-                data.cholesterol.forEach((item) => {
-                    const formattedDate = formatDate(
-                        item.sick_cholesterol_date
-                    );
+                data.step.forEach((item) => {
+                    const formattedDate = formatDate(item.sick_step_date);
                     if (!dateMap.has(formattedDate)) {
                         dateMap.set(formattedDate, {});
                     }
                     dateMap.get(formattedDate)[
                         item.sick_name + " " + item.sick_surname
-                    ] = parseFloat(item.sick_cholesterol_cholesterol);
+                    ] = parseFloat(item.sick_step_step);
                 });
 
                 const sortedDates = Array.from(dateMap.keys()).sort((a, b) => {
@@ -63,12 +61,12 @@
                         title: "Tarih",
                     },
                     vAxis: {
-                        title: "Kolesterol",
+                        title: "Adım Sayısı",
                     },
                 };
 
                 var chart = new google.charts.Line(
-                    document.getElementById("chart_div3")
+                    document.getElementById("chart_div6")
                 );
                 chart.draw(dataTable, options);
             })

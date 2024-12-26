@@ -5,14 +5,14 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        fetch(`<%= baseURL %>/api/male/step`)
+        fetch(`<%= baseURL %>/api/weight`)
             .then((response) => response.json())
             .then((data) => {
                 var dataTable = new google.visualization.DataTable();
                 dataTable.addColumn("string", "Tarih");
 
                 const sickMap = new Map();
-                data.step.forEach((item) => {
+                data.weight.forEach((item) => {
                     if (
                         !sickMap.has(item.sick_name + " " + item.sick_surname)
                     ) {
@@ -28,14 +28,14 @@
                 });
 
                 const dateMap = new Map();
-                data.step.forEach((item) => {
-                    const formattedDate = formatDate(item.sick_step_date);
+                data.weight.forEach((item) => {
+                    const formattedDate = formatDate(item.sick_weight_date);
                     if (!dateMap.has(formattedDate)) {
                         dateMap.set(formattedDate, {});
                     }
                     dateMap.get(formattedDate)[
                         item.sick_name + " " + item.sick_surname
-                    ] = parseFloat(item.sick_step_step);
+                    ] = parseFloat(item.sick_weight_weight);
                 });
 
                 const sortedDates = Array.from(dateMap.keys()).sort((a, b) => {
@@ -61,12 +61,12 @@
                         title: "Tarih",
                     },
                     vAxis: {
-                        title: "Adım Sayısı",
+                        title: "Kilo",
                     },
                 };
 
                 var chart = new google.charts.Line(
-                    document.getElementById("chart_div6")
+                    document.getElementById("chart_div8")
                 );
                 chart.draw(dataTable, options);
             })
