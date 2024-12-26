@@ -133,6 +133,14 @@ app.get("/api/male/waistline", async (req, res) => {
     });
 });
 
+app.get("/api/male/weight", async (req, res) => {
+    const weight = await Male.weight();
+
+    res.status(200).json({
+        weight: weight[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
