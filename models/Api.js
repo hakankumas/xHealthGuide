@@ -232,4 +232,19 @@ module.exports = class Api {
             WHERE gender.id = ${gender_id}
         `);
     }
+
+    // Vücut Kitle Endeksi
+    static sick_bmi() {
+        return connection.execute(`
+            SELECT 
+                sick.id as sick_id,
+                CONCAT(sick.name, ' ', sick.surname) as sick_fullname,
+                sick.height as sick_height,
+                sick.weight as sick_weight,
+                ROUND(sick.weight / ((sick.height * sick.height)/10000),1) as sick_bmi
+            FROM sick
+            GROUP BY sick.id
+            ORDER BY sick_bmi DESC
+        `);
+    }
 };

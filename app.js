@@ -217,6 +217,14 @@ app.get("/api/gender_distribution_of_chronic_sick", async (req, res) => {
     });
 });
 
+app.get("/api/sick_bmi", async (req, res) => {
+    const sick_bmi = await Api.sick_bmi();
+
+    res.status(200).json({
+        sick_bmi: sick_bmi[0],
+    });
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
