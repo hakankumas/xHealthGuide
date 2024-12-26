@@ -14,9 +14,14 @@ module.exports = class Sick {
                 FLOOR(DATEDIFF(CURDATE(), sick.birthday) / 365) as sick_age,
                 sick.height as sick_height,
                 sick.weight as sick_weight,
-                ROUND(sick.weight / ((sick.height * sick.height)/10000),1) as sick_bmi
+                ROUND(sick.weight / ((sick.height * sick.height)/10000),1) as sick_bmi,
+				COUNT(chronic.id) as chronic_number
+                
             FROM sick
             LEFT JOIN gender ON gender.id = sick.gender_id
+            LEFT JOIN sick_chronic ON sick_chronic.sick_id = sick.id
+            LEFT JOIN chronic ON sick_chronic.chronic_id = chronic.id
+            GROUP BY sick.id
         `);
     }
 

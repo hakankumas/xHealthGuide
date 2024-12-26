@@ -134,6 +134,9 @@
                                                         Durum
                                                     </th>
                                                     <th class="text-center">
+                                                        Kronik Hastalık
+                                                    </th>
+                                                    <th class="text-center">
                                                         Sil
                                                     </th>
                                                 </tr>
@@ -153,6 +156,9 @@
                                                     <td class="text-center"><%= item.sick_bmi %> bmi</td>
                                                     <td class="text-center <%= (item.sick_bmi < 25) ? 'text-success' : (item.sick_bmi > 30 ? 'text-danger' : 'text-primary') %>">
                                                         <%= (item.sick_bmi < 25) ? 'İdeal' : (item.sick_bmi > 30 ? 'Obez' : 'Fazla Kilolu') %>
+                                                    </td>
+                                                    <td class="text-center <%= (item.chronic_number != 0) ? 'text-info' : 'text-dark' %>">
+                                                        <%= (item.chronic_number != 0) ? `${item.chronic_number} Kronik Hastalık` : '-' %>
                                                     </td>
                                                     <td class="text-danger text-center">
                                                         <a href="<%= baseURL %>/sick/delete/<%= item.sick_id %>" class="btn btn-outline-danger">Sil</a>
