@@ -11,6 +11,7 @@ const Admin = require("./models/Admin");
 const Count = require("./models/Count");
 const Sick = require("./models/Sick");
 const Api = require("./models/Api");
+const Chronic = require("./models/Chronic");
 
 app.get("/", async (req, res) => {
     const count_sick = await Count.count_sick();
@@ -185,6 +186,12 @@ app.post("/sick/create_chronic", async (req, res) => {
     const create_chronic = await Sick.create_chronic(sick_id, chronic_id);
 
     if (create_chronic) res.redirect("/chronic");
+});
+
+app.post("/chronic/create", async (req, res) => {
+    const chronic = await Chronic.create(req.body.chronic_name);
+
+    if (chronic) res.redirect("/chronic");
 });
 
 const PORT = 3001;
