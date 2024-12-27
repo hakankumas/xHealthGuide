@@ -237,4 +237,28 @@ module.exports = class Api {
             ORDER BY sick_bmi DESC
         `);
     }
+
+    // Yaşa Göre Hasta Sayısı
+    static number_of_sick_by_age() {
+        return connection.execute(`
+            SELECT 
+                FLOOR(DATEDIFF(CURDATE(), sick.birthday) / 365) as sick_age,
+                COUNT(sick.id) as number
+            FROM sick
+            GROUP BY sick_age
+        `);
+    }
+
+    // Cinsiyete Göre Hasta Sayısı
+    static number_of_sick_by_gender() {
+        return connection.execute(`
+            SELECT
+                gender.id as gender_id,
+                gender.name as gender_name,
+                COUNT(sick.id) as number
+            FROM gender
+            LEFT JOIN sick ON sick.gender_id = gender.id
+            GROUP BY gender.id
+        `);
+    }
 };

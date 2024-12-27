@@ -20,5 +20,7 @@ router.get(
     apiController.gender_distribution_of_chronic_sick
 );
 router.get("/sick_bmi", apiController.sick_bmi);
+router.get("/number_of_sick_by_age", apiController.number_of_sick_by_age);
+router.get("/number_of_sick_by_gender", apiController.number_of_sick_by_gender);
 
 module.exports = router;

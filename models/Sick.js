@@ -57,6 +57,7 @@ module.exports = class Sick {
                 sick.name as sick_name,
                 sick.surname as sick_surname
             FROM sick
+            ORDER BY sick.name ASC
         `);
     }
 

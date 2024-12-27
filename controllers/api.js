@@ -98,3 +98,19 @@ exports.sick_bmi = async (req, res) => {
         sick_bmi: sick_bmi[0],
     });
 };
+
+exports.number_of_sick_by_age = async (req, res) => {
+    const number_of_sick_by_age = await Api.number_of_sick_by_age();
+
+    res.status(200).json({
+        number_of_sick_by_age: number_of_sick_by_age[0],
+    });
+};
+
+exports.number_of_sick_by_gender = async (req, res) => {
+    const number_of_sick_by_gender = await Api.number_of_sick_by_gender();
+
+    res.status(200).json({
+        number_of_sick_by_gender: number_of_sick_by_gender[0],
+    });
+};
