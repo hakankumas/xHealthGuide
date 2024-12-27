@@ -57,9 +57,13 @@ app.get("/chronic", async (req, res) => {
 });
 
 app.get("/datas", async (req, res) => {
+    const list_sick = await Sick.list_sick();
+
     res.render("datas", {
         title: "Hasta Verileri | Sağlık Rehberi KDS",
         activePage: "datas",
+
+        list_sick: list_sick[0],
     });
 });
 
@@ -152,6 +156,18 @@ app.get("/api/sick_bmi", async (req, res) => {
     res.status(200).json({
         sick_bmi: sick_bmi[0],
     });
+});
+
+app.post("/sick/create_data", async (req, res) => {
+    const { parameter_type, sick_id, value, process_date } = req.body;
+    const create_data = await Sick.create_data(
+        parameter_type,
+        sick_id,
+        value,
+        process_date
+    );
+
+    if (create_data) res.redirect("/datas");
 });
 
 const PORT = 3001;

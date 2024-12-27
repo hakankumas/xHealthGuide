@@ -49,6 +49,17 @@ module.exports = class Sick {
         `);
     }
 
+    // Hasta Listesi
+    static list_sick() {
+        return connection.execute(`
+            SELECT 
+                sick.id as sick_id, 
+                sick.name as sick_name,
+                sick.surname as sick_surname
+            FROM sick
+        `);
+    }
+
     // Kronik Hastalık Dağılımı
     static distribution_of_chronic_sick() {
         return connection.execute(`
@@ -80,5 +91,16 @@ module.exports = class Sick {
             GROUP BY gender.id, chronic.id
             ORDER BY chronic.name ASC, gender.id ASC
         `);
+    }
+
+    // Hasta İçin Veri Ekleme
+    static create_data(parameter_type, sick_id, value, process_date) {
+        return connection.execute(
+            `
+            INSERT INTO sick_${parameter_type} (sick_id, ${parameter_type}, date)
+            VALUES (?,?,?)
+        `,
+            [sick_id, value, process_date]
+        );
     }
 };
