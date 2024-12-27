@@ -47,12 +47,16 @@ app.post("/api/login", async (req, res) => {
 
 app.get("/chronic", async (req, res) => {
     const info_chronic_sick = await Sick.info_chronic_sick();
+    const list_sick = await Sick.list_sick();
+    const list_chronic = await Sick.list_chronic();
 
     res.render("chronic", {
         title: "Kronik Hastalıklar | Sağlık Rehberi KDS",
         activePage: "chronic",
 
         info_chronic_sick: info_chronic_sick[0],
+        list_sick: list_sick[0],
+        list_chronic: list_chronic[0],
     });
 });
 
@@ -174,6 +178,13 @@ app.post("/sick/create", async (req, res) => {
     const sick = await Sick.create(req.body);
 
     if (sick) res.redirect("/");
+});
+
+app.post("/sick/create_chronic", async (req, res) => {
+    const { sick_id, chronic_id } = req.body;
+    const create_chronic = await Sick.create_chronic(sick_id, chronic_id);
+
+    if (create_chronic) res.redirect("/chronic");
 });
 
 const PORT = 3001;

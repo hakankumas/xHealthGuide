@@ -91,7 +91,7 @@
                 <div class="content-wrapper">
                     <div class="content">
                         <div class="row">
-                            <div class="col-12 col-lg-6">
+                            <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <h1
@@ -113,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-6">
+                            <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <h1
@@ -196,6 +196,157 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h1
+                                            class="text-center pb-3"
+                                            style="
+                                                font-size: 25px;
+                                                font-weight: bold;
+                                            "
+                                        >
+                                            Hasta İçin Kronik Hastalık Ekleme
+                                            Formu
+                                        </h1>
+                                        <form
+                                            action="<%= baseURL %>/sick/create_chronic"
+                                            method="post"
+                                        >
+                                            <div class="form-group">
+                                                <label for="sick_id"
+                                                    >Hasta Adı</label
+                                                >
+                                                <select
+                                                    class="form-control"
+                                                    id="sick_id"
+                                                    name="sick_id"
+                                                    required
+                                                >
+                                                    <option value=""></option>
+                                                    <!-- prettier-ignore -->
+                                                    <% list_sick.forEach(item => { %>
+                                                    <!-- prettier-ignore -->
+                                                    <option value="<%= item.sick_id %>">
+                                                        <%= `${item.sick_name} ${item.sick_surname}` %>
+                                                    </option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="chronic_id"
+                                                    >Kronik Hastalık</label
+                                                >
+                                                <select
+                                                    class="form-control"
+                                                    id="chronic_id"
+                                                    name="chronic_id"
+                                                    required
+                                                >
+                                                    <option value=""></option>
+                                                    <!-- prettier-ignore -->
+                                                    <% list_chronic.forEach(item => { %>
+                                                    <!-- prettier-ignore -->
+                                                    <option value="<%= item.chronic_id %>">
+                                                        <%= item.chronic_name %>
+                                                    </option>
+                                                    <% }) %>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-lg btn-success"
+                                                >
+                                                    Ekle
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mt-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h1
+                                            class="text-center mb-5"
+                                            style="
+                                                font-size: 25px;
+                                                font-weight: bold;
+                                            "
+                                        >
+                                            Kronik Hastalık Ekleme Formu
+                                        </h1>
+                                        <form
+                                            action="<%= baseURL %>/chronic/create"
+                                            method="post"
+                                            class="d-flex align-items-center"
+                                        >
+                                            <input
+                                                name="chronic_name"
+                                                class="form-control"
+                                                type="text"
+                                                placeholder="Kronik Hastalık"
+                                            />
+                                            <button
+                                                type="submit"
+                                                class="btn btn-success"
+                                            >
+                                                Ekle
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <hr />
+
+                                    <div class="card-body">
+                                        <h1
+                                            class="text-center pb-3"
+                                            style="
+                                                font-size: 24px;
+                                                font-weight: bold;
+                                            "
+                                        >
+                                            Kronik Hastalıklar Listesi
+                                        </h1>
+                                        <table
+                                            id="table_chronic_list"
+                                            class="display rounded"
+                                            style="
+                                                width: 100%;
+                                                background-color: whitesmoke;
+                                            "
+                                        >
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        ID
+                                                    </th>
+                                                    <th>Hastalık Adı</th>
+                                                    <th class="text-center">
+                                                        Sil
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- prettier-ignore -->
+                                                <% list_chronic.forEach(item => { %>
+                                                <!-- prettier-ignore -->
+                                                <tr>
+                                                    <td class="text-center"><%= item.chronic_id %></td>
+                                                    <td><%= item.chronic_name %></td>
+                                                    <td class="text-danger text-center">
+                                                        <a href="<%= baseURL %>/chronic/delete/<%= item.chronic_id %>" class="btn btn-outline-danger">Sil</a>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -208,6 +359,12 @@
                 paging: false,
                 scrollCollapse: true,
                 scrollY: "75vh",
+                order: [[0, "desc"]],
+            });
+            new DataTable("#table_chronic_list", {
+                paging: false,
+                scrollCollapse: true,
+                scrollY: "25vh",
                 order: [[0, "desc"]],
             });
         </script>

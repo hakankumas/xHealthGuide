@@ -60,6 +60,16 @@ module.exports = class Sick {
         `);
     }
 
+    // Kronik Hastalıklar Listesi
+    static list_chronic() {
+        return connection.execute(`
+            SELECT 
+                chronic.id as chronic_id, 
+                chronic.name as chronic_name
+            FROM chronic
+        `);
+    }
+
     // Kronik Hastalık Dağılımı
     static distribution_of_chronic_sick() {
         return connection.execute(`
@@ -93,6 +103,19 @@ module.exports = class Sick {
         `);
     }
 
+    // Hasta Ekleme
+    static create(condition) {
+        const { name, surname, gender_id, birthday, height, weight } =
+            condition;
+        return connection.execute(
+            `
+            INSERT INTO sick (name, surname, gender_id, birthday, height, weight)
+            VALUES (?,?,?,?,?,?)
+        `,
+            [name, surname, gender_id, birthday, height, weight]
+        );
+    }
+
     // Hasta İçin Veri Ekleme
     static create_data(parameter_type, sick_id, value, process_date) {
         return connection.execute(
@@ -104,16 +127,14 @@ module.exports = class Sick {
         );
     }
 
-    // Hasta Ekleme
-    static create(condition) {
-        const { name, surname, gender_id, birthday, height, weight } =
-            condition;
+    // Hasta İçin Kronik Hastalık Ekleme
+    static create_chronic(sick_id, chronic_id) {
         return connection.execute(
             `
-            INSERT INTO sick (name, surname, gender_id, birthday, height, weight)
-            VALUES (?,?,?,?,?,?)
+            INSERT INTO sick_chronic (sick_id, chronic_id)
+            VALUES (?,?)
         `,
-            [name, surname, gender_id, birthday, height, weight]
+            [sick_id, chronic_id]
         );
     }
 };
