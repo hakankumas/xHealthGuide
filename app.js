@@ -170,6 +170,12 @@ app.post("/sick/create_data", async (req, res) => {
     if (create_data) res.redirect("/datas");
 });
 
+app.post("/sick/create", async (req, res) => {
+    const sick = await Sick.create(req.body);
+
+    if (sick) res.redirect("/");
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {

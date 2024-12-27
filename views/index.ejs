@@ -172,7 +172,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 mb-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <h1
@@ -242,7 +242,7 @@
                                                         <%= (item.sick_bmi < 25) ? 'İdeal' : (item.sick_bmi > 30 ? 'Obez' : 'Fazla Kilolu') %>
                                                     </td>
                                                     <td class="text-center <%= (item.chronic_number != 0) ? 'text-info' : 'text-dark' %>">
-                                                        <%= (item.chronic_number != 0) ? `${item.chronic_number} Kronik Hastalık` : '-' %>
+                                                        <%= (item.chronic_number != 0) ? `${item.chronic_number} Kronik Hastalığı Var` : '-' %>
                                                     </td>
                                                     <td class="text-danger text-center">
                                                         <a href="<%= baseURL %>/sick/delete/<%= item.sick_id %>" class="btn btn-outline-danger">Sil</a>
@@ -251,6 +251,110 @@
                                                 <% }) %>
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h1
+                                            class="text-center pb-3"
+                                            style="
+                                                font-size: 25px;
+                                                font-weight: bold;
+                                            "
+                                        >
+                                            Hasta Ekleme Formu
+                                        </h1>
+                                        <form
+                                            action="<%= baseURL %>/sick/create"
+                                            method="post"
+                                        >
+                                            <div class="form-group">
+                                                <label for="name">Ad</label>
+                                                <input
+                                                    id="name"
+                                                    name="name"
+                                                    class="form-control"
+                                                    type="text"
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="surname"
+                                                    >Soyad</label
+                                                >
+                                                <input
+                                                    id="surname"
+                                                    name="surname"
+                                                    class="form-control"
+                                                    type="text"
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="gender_id"
+                                                    >Cinsiyet</label
+                                                >
+                                                <select
+                                                    class="form-control"
+                                                    id="gender_id"
+                                                    name="gender_id"
+                                                    required
+                                                >
+                                                    <option value=""></option>
+                                                    <option value="1">
+                                                        Erkek
+                                                    </option>
+                                                    <option value="2">
+                                                        Kadın
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="birthday"
+                                                    >Doğum Tarih</label
+                                                >
+                                                <input
+                                                    id="birthday"
+                                                    name="birthday"
+                                                    class="form-control"
+                                                    type="date"
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="height">Boy</label>
+                                                <input
+                                                    id="height"
+                                                    name="height"
+                                                    class="form-control"
+                                                    type="text"
+                                                    placeholder="Örn: 185"
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="weight">Kilo</label>
+                                                <input
+                                                    id="weight"
+                                                    name="weight"
+                                                    class="form-control"
+                                                    type="text"
+                                                    placeholder="Örn: 85"
+                                                />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-lg btn-success"
+                                                >
+                                                    Ekle
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

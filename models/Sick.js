@@ -103,4 +103,17 @@ module.exports = class Sick {
             [sick_id, value, process_date]
         );
     }
+
+    // Hasta Ekleme
+    static create(condition) {
+        const { name, surname, gender_id, birthday, height, weight } =
+            condition;
+        return connection.execute(
+            `
+            INSERT INTO sick (name, surname, gender_id, birthday, height, weight)
+            VALUES (?,?,?,?,?,?)
+        `,
+            [name, surname, gender_id, birthday, height, weight]
+        );
+    }
 };
