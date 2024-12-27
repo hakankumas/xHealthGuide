@@ -142,4 +142,11 @@ module.exports = class Sick {
             [sick_id, chronic_id]
         );
     }
+
+    // Hasta İçin Kronik Hastalık Silme
+    static delete_chronic(sick_chronic_id) {
+        return connection.execute(
+            `DELETE FROM sick_chronic WHERE id = ${sick_chronic_id}`
+        );
+    }
 };

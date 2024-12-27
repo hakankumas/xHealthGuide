@@ -193,6 +193,11 @@ app.post("/sick/create_chronic", async (req, res) => {
     if (create_chronic) res.redirect("/chronic");
 });
 
+app.get("/sick/delete_chronic/:id", async (req, res) => {
+    const sick_chronic = await Sick.delete_chronic(req.params.id);
+    if (sick_chronic) res.redirect("/chronic");
+});
+
 app.post("/chronic/create", async (req, res) => {
     const chronic = await Chronic.create(req.body.chronic_name);
 
