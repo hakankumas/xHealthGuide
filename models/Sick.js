@@ -116,6 +116,11 @@ module.exports = class Sick {
         );
     }
 
+    // Hasta Silme
+    static delete(sick_id) {
+        return connection.execute(`DELETE FROM sick WHERE id = ${sick_id}`);
+    }
+
     // Hasta İçin Veri Ekleme
     static create_data(parameter_type, sick_id, value, process_date) {
         return connection.execute(
