@@ -204,6 +204,11 @@ app.post("/chronic/create", async (req, res) => {
     if (chronic) res.redirect("/chronic");
 });
 
+app.get("/chronic/delete/:id", async (req, res) => {
+    const chronic = await Chronic.delete(req.params.id);
+    if (chronic) res.redirect("/chronic");
+});
+
 const PORT = 3001;
 app.locals.baseURL = `http://localhost:${PORT}`;
 app.listen(PORT, () => {
